@@ -7,16 +7,16 @@ from models.state import State
 from models.city import City
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities',
+                 methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_cities(state_id):
     state = storage.get(State, state_id)
     if state is None:
         abort(404, 'Not found')
     if request.method == 'GET':
         cities = storage.all(City)
-        return jsonify(
-            [city.to_dict() for city in cities.values() if city.to_dict().get("state_id") == state_id]
-        )
+        return jsonify([city.to_dict() for city in cities.values()
+                        if city.to_dict().get("state_id") == state_id])
     if request.method == 'POST':
         data = request.get_json()
         if data is None:
