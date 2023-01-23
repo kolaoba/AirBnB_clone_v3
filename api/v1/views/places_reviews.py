@@ -44,7 +44,7 @@ def list_or_create_reviews(place_id):
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_review(review_id):
     """
-    get, add or update reviews given an ID
+    get, add or update reviews given review_ID
     """
     review = storage.get(Review, review_id)
     if review is None:
