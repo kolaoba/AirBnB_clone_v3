@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-
+"""
+Flask route that return json status response
+and stats
+"""
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage

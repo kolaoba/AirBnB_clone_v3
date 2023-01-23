@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Flask App that integrates with AirBnb static HTML Template
+"""
 from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
@@ -13,6 +15,9 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.teardown_appcontext
 def tear_down(exc):
+    """
+    this request closes the SQLAlchemy session after every request
+    """
     storage.close()
 
 
