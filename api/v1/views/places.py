@@ -44,7 +44,7 @@ def list_or_create_places(city_id):
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_place(place_id):
     """
-    get, delete or update place given a place id
+    get, delete or update place given a place_id
     """
     place = storage.get(Place, place_id)
     if place is None:
