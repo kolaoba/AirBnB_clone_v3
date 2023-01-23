@@ -11,7 +11,7 @@ from models.user import User
 @app_views.route('/users', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_users():
     """
-    get or add users 
+    get or add new users
     """
     if request.method == 'GET':
         users = storage.all(User)
