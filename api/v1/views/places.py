@@ -13,7 +13,7 @@ from models.user import User
 @app_views.route('/cities/<city_id>/places', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_places(city_id):
     """
-    get or create cities given a city_id
+    get or create new cities given a city_id
     """
     city = storage.get(City, city_id)
     if city is None:
@@ -44,7 +44,7 @@ def list_or_create_places(city_id):
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_place(place_id):
     """
-    get, delete or  update place given a place id
+    get, delete or update place given a place id
     """
     place = storage.get(Place, place_id)
     if place is None:
