@@ -13,7 +13,7 @@ from models.user import User
 @app_views.route('/places/<place_id>/reviews', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_reviews(place_id):
     """
-    get or add review to a place given its ID
+    get or add new review to a place given its ID
     """
     place = storage.get(Place, place_id)
     if place is None:
