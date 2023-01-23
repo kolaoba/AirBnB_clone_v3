@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Flask route that returns json status response for all Amenities Objects
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
@@ -8,6 +10,9 @@ from models.amenity import Amenity
 
 @app_views.route('/amenities', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_amenities():
+    """
+    list or add amenities to stroage
+    """
     if request.method == 'GET':
         amenities = storage.all(Amenity)
         return jsonify(
@@ -27,6 +32,9 @@ def list_or_create_amenities():
 @app_views.route('/amenities/<amenity_id>',
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_amenity(amenity_id):
+    """
+    get, delete or update particular amentiy given amenity_id
+    """
     amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)
