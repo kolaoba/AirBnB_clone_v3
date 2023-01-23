@@ -10,7 +10,8 @@ from models.review import Review
 from models.user import User
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route('/places/<place_id>/reviews',
+                 methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_reviews(place_id):
     """
     get or add new review to a place given its ID
@@ -20,9 +21,8 @@ def list_or_create_reviews(place_id):
         abort(404, 'Not found')
     if request.method == 'GET':
         reviews = storage.all(Review)
-        return jsonify(
-            [review.to_dict() for review in reviews.values() if place.to_dict().get("place_id") == place_id]
-        )
+        return jsonify([review.to_dict() for review in reviews.values(
+        ) if place.to_dict().get("place_id") == place_id])
     if request.method == 'POST':
         data = request.get_json()
         if data is None:
