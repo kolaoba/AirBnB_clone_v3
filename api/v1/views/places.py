@@ -10,7 +10,8 @@ from models.place import Place
 from models.user import User
 
 
-@app_views.route('/cities/<city_id>/places', methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route('/cities/<city_id>/places',
+                 methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_places(city_id):
     """
     get or create new cities given a city_id
@@ -20,9 +21,8 @@ def list_or_create_places(city_id):
         abort(404, 'Not found')
     if request.method == 'GET':
         places = storage.all(Place)
-        return jsonify(
-            [place.to_dict() for place in places.values() if place.to_dict().get("city_id") == city_id]
-        )
+        return jsonify([place.to_dict() for place in places.values()
+                        if place.to_dict().get("city_id") == city_id])
     if request.method == 'POST':
         data = request.get_json()
         if data is None:
