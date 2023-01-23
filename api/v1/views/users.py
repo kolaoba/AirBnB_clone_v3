@@ -18,7 +18,9 @@ def list_or_create_users():
         if data is None:
             abort(400, "Not a JSON")
         if data.get("email") is None:
-            abort(400, "Missing name")
+            abort(400, "Missing email")
+        if data.get("password") is None:
+            abort(400, "Missing password")
         new_user = User(**data)
         new_user.save()
         return jsonify(new_user.to_dict()), 201
