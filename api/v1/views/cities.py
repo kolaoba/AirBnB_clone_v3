@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Flask route that returns json status response on City Objects
+"""
 
 from api.v1.views import app_views
 from flask import jsonify, abort, request
@@ -10,6 +13,9 @@ from models.city import City
 @app_views.route('/states/<state_id>/cities',
                  methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_cities(state_id):
+    """
+    Get or add cities given a state_id
+    """
     state = storage.get(State, state_id)
     if state is None:
         abort(404, 'Not found')
@@ -32,6 +38,9 @@ def list_or_create_cities(state_id):
 @app_views.route('/cities/<city_id>',
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_city(city_id):
+    """
+    Get, delete or update particular city given city_id
+    """
     city = storage.get(City, city_id)
     if city is None:
         abort(404)

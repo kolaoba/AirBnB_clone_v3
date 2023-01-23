@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Flask route that returns json status response for State Objects
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
@@ -8,6 +10,9 @@ from models.state import State
 
 @app_views.route('/states', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_states():
+    """
+    function to get states or add state to storage
+    """
     if request.method == 'GET':
         states = storage.all(State)
         return jsonify(
@@ -27,6 +32,10 @@ def list_or_create_states():
 @app_views.route('/states/<state_id>',
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_state(state_id):
+    """
+    funtion to retrieve, delete or update particular state
+    with state_id
+    """
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
