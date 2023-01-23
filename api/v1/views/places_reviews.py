@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Flask route that returns json status response on Reviews Objects
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
@@ -10,6 +12,9 @@ from models.user import User
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_reviews(place_id):
+    """
+    get or add review to a place given its ID
+    """
     place = storage.get(Place, place_id)
     if place is None:
         abort(404, 'Not found')
@@ -38,6 +43,9 @@ def list_or_create_reviews(place_id):
 @app_views.route('/reviews/<review_id>',
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_review(review_id):
+    """
+    get, add or update reviews given an ID
+    """
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)

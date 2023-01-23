@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Flask route that returns json status response on User Objects
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
@@ -8,6 +10,9 @@ from models.user import User
 
 @app_views.route('/users', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_users():
+    """
+    get or add users 
+    """
     if request.method == 'GET':
         users = storage.all(User)
         return jsonify(
@@ -29,6 +34,9 @@ def list_or_create_users():
 @app_views.route('/users/<user_id>',
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_user(user_id):
+    """
+    get, delete or update user given an id
+    """
     user = storage.get(User, user_id)
     if user is None:
         abort(404)

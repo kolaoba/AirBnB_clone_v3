@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+Flask route that returns json status response on Places Objects
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
@@ -10,6 +12,9 @@ from models.user import User
 
 @app_views.route('/cities/<city_id>/places', methods=['GET', 'POST'], strict_slashes=False)
 def list_or_create_places(city_id):
+    """
+    get or create cities given a city_id
+    """
     city = storage.get(City, city_id)
     if city is None:
         abort(404, 'Not found')
@@ -38,6 +43,9 @@ def list_or_create_places(city_id):
 @app_views.route('/places/<place_id>',
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_place(place_id):
+    """
+    get, delete or  update place given a place id
+    """
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
