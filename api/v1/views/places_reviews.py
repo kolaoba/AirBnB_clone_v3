@@ -22,7 +22,7 @@ def list_or_create_reviews(place_id):
     if request.method == 'GET':
         reviews = storage.all(Review)
         return jsonify([review.to_dict() for review in reviews.values(
-        ) if place.to_dict().get("place_id") == place_id])
+        ) if review.to_dict().get("place_id") == place_id])
     if request.method == 'POST':
         data = request.get_json()
         if data is None:
