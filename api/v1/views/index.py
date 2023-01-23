@@ -15,11 +15,13 @@ classes = [Amenity, City, Place, Review, State, User]
 
 @app_views.route('/status', strict_slashes=False)
 def index_status():
+    """Return am api status OK"""
     return jsonify(status="OK")
 
 
 @app_views.route('/stats', strict_slashes=False)
 def get_stats():
+    """Returns statistics about objects in storage"""
     return jsonify(
         amenities=storage.count(Amenity),
         cities=storage.count(City),
