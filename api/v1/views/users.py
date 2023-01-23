@@ -35,7 +35,7 @@ def list_or_create_users():
                  methods=['GET', 'DELETE', 'PUT'], strict_slashes=False)
 def get_or_delete_or_update_user(user_id):
     """
-    get, delete or update user given an id
+    get, delete or update user given user_id
     """
     user = storage.get(User, user_id)
     if user is None:
