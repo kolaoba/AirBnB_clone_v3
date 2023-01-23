@@ -24,7 +24,7 @@ def index_status():
 
 @app_views.route('/stats', strict_slashes=False)
 def get_stats():
-    """Returns statistics about objects in storage"""
+    """Returns counts of all objects in storage"""
     return jsonify(
         amenities=storage.count(Amenity),
         cities=storage.count(City),
